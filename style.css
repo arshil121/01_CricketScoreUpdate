@@ -56,7 +56,7 @@ input[type="text"],
 input[type="number"] {
   text-align: center;
   width: 100%;
-  padding: 12px 15px;
+  padding: 12px 2px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -64,8 +64,6 @@ input[type="number"] {
   box-sizing: border-box;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 0.8rem;
-  
-  /* background: rgb(0 100 0 / 0.05) !important; */
 }
 
 button {
