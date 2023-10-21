@@ -32,29 +32,25 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-
-function saveScore() {
-  const batsmanTable = document.getElementById("batsmanTable");
-  const extraRunsTable = document.querySelector("table:nth-of-type(2)");
-  const totalRunsTable = document.querySelector("table:nth-of-type(3)");
-  
-  const tableWidth = batsmanTable.offsetWidth;
-  const extraRunsWidth = extraRunsTable.offsetWidth;
-  const totalRunsWidth = totalRunsTable.offsetWidth;
-  
-  const maxWidth = Math.max(tableWidth, extraRunsWidth, totalRunsWidth);
-  const viewportWidth = Math.min(document.documentElement.clientWidth, window.innerWidth || 0);
-  const screenshotWidth = Math.min(maxWidth * 2, viewportWidth);
-  
-  html2canvas(document.body, {
-      scale: 2,
-      width: screenshotWidth,
-      dpi: window.devicePixelRatio * 2,
-  }).then(function (canvas) {
-      const link = document.createElement("a");
-      link.download = "cricket_score.png";
-      link.href = canvas.toDataURL();
-      link.click();
-  });
+function takeScreenshot() {
+  return html2canvas(document.body, {
+    scale: window.devicePixelRatio, // Adjust the scale based on device pixel ratio
+    useCORS: true,
+    allowTaint: true,
+    backgroundColor: '#ffffff', // Set the background color to white
+  }).then(canvas => canvas.toDataURL('image/png'));
 }
+
+const downloadBtn = document.getElementById("downloadBtn");
+downloadBtn.addEventListener("click", async () => {
+  try {
+    const image = await takeScreenshot();
+    const downloadLink = document.createElement('a');
+    downloadLink.href = image;
+    downloadLink.download = 'screenshot.png';
+    downloadLink.click();
+  } catch (error) {
+    console.error('An error occurred during the screenshot capture:', error);
+  }
+});
 
