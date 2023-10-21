@@ -34,28 +34,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function saveScore() {
-  const tableWidth = document.getElementById("batsmanTable").offsetWidth;
-  const extraRunsWidth = document.querySelector("table:nth-of-type(2)")
-    .offsetWidth;
-  const totalRunsWidth = document.querySelector("table:nth-of-type(3)")
-    .offsetWidth;
+  const batsmanTable = document.getElementById("batsmanTable");
+  const extraRunsTable = document.querySelector("table:nth-of-type(2)");
+  const totalRunsTable = document.querySelector("table:nth-of-type(3)");
+  
+  const tableWidth = batsmanTable.offsetWidth;
+  const extraRunsWidth = extraRunsTable.offsetWidth;
+  const totalRunsWidth = totalRunsTable.offsetWidth;
+  
   const maxWidth = Math.max(tableWidth, extraRunsWidth, totalRunsWidth);
-
-  // Calculate the width of the viewport
   const viewportWidth = Math.min(document.documentElement.clientWidth, window.innerWidth || 0);
-
-  // Calculate the maximum width of the screenshot
   const screenshotWidth = Math.min(maxWidth * 2, viewportWidth);
-
+  
   html2canvas(document.body, {
-    scale: 2, // Adjust the scale for better quality and prevent cropping
-    width: screenshotWidth, // Adjust the width for better resolution
-    dpi: window.devicePixelRatio * 2, // Adjust the dpi for better resolution
+      scale: 2,
+      width: screenshotWidth,
+      dpi: window.devicePixelRatio * 2,
   }).then(function (canvas) {
-    var link = document.createElement("a");
-    link.download = "cricket_score.png";
-    link.href = canvas.toDataURL();
-    link.click();
+      const link = document.createElement("a");
+      link.download = "cricket_score.png";
+      link.href = canvas.toDataURL();
+      link.click();
   });
 }
 
