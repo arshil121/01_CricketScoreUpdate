@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const cell2 = row.insertCell(1);
     const cell3 = row.insertCell(2);
     const cell4 = row.insertCell(3);
-    cell1.innerHTML = `<input type="text" id="batsman${i}" placeholder="Player${i} ">`;
+    cell1.innerHTML = `<input type="text" id="batsman${i}" placeholder="Player ${i} ">`;
     cell2.innerHTML = `<input type="number" id="runs${i}" placeholder="Runs">`;
     cell3.innerHTML = `<input type="number" id="fours${i}" placeholder="0">`;
     cell4.innerHTML = `<input type="number" id="sixes${i}" placeholder="0">`;
